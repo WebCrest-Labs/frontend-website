@@ -7,24 +7,40 @@ const Services = () => {
 
   const servicesData = [
     {
-      title: 'Growth, Social & Video Marketing',
-      description: 'Data-driven growth strategies, social media management, and high-impact short-form video content.',
-      icon: assets.ads_icon
+      title: "Digital Product Engineering",
+      description:
+        "End-to-end product engineering for web and mobile—from architecture to scalable, production-ready builds.",
+      icon: assets.digital_product_engineering,
     },
     {
-      title: 'Digital Product Engineering',
-      description: 'End-to-end product engineering for web and mobile—from architecture to scalable, production-ready builds.',
-      icon: assets.marketing_icon
+      title: "Web & SaaS Development",
+      description:
+        "High-performance websites and SaaS platforms built with modern frameworks, optimized for scale and SEO.",
+      icon: assets.web_saas_development,
     },
     {
-      title: 'UI/UX & Frontend Architecture',
-      description: 'Design-led frontend systems with strong UX principles, atomic architecture, and scalable theming.',
-      icon: assets.content_icon
+      title: "Mobile App Development",
+      description:
+        "Native and cross-platform Android & iOS apps delivering seamless, high-quality user experiences.",
+      icon: assets.mobile_app_development,
     },
     {
-      title: 'Growth, Social & Video Marketing',
-      description: 'Data-driven growth strategies, social media management, and high-impact short-form video content.',
-      icon: assets.social_icon
+      title: "Backend, APIs & DevOps",
+      description:
+        "Robust backend systems, secure APIs, and cloud infrastructure with CI/CD and performance-first DevOps.",
+      icon: assets.backend_apis_devops,
+    },
+    {
+      title: "UI/UX & Frontend Architecture",
+      description:
+        "Design-led frontend systems with strong UX principles, atomic architecture, and scalable theming.",
+      icon: assets.ui_ux_frontend_architecture,
+    },
+    {
+      title: "Growth, Social & Video Marketing",
+      description:
+        "Data-driven growth strategies, social media management, and high-impact short-form video content.",
+      icon: assets.growth_social_video_marketing,
     }
   ]
 
