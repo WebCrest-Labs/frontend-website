@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/frontend-website/',
+  base: '/',
   build: {
     outDir: 'docs'
   }
