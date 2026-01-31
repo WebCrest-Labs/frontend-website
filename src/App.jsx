@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
-import ContactUs from './components/ContactUs'
+import { Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
-import Hero from './components/Hero'
 import Navbar from './components/Navbar'
-import OurWork from './components/OurWork'
-import Services from './components/Services'
-import Teams from './components/Teams'
+import AboutUs from './pages/AboutUs'
+import ContactPage from './pages/ContactPage'
+import Home from './pages/Home'
+import ServicesPage from './pages/ServicesPage'
+import TeamPage from './pages/TeamPage'
+import WorkPage from './pages/WorkPage'
 
 const getInitialTheme = () => {
   const saved = localStorage.getItem('theme')
@@ -61,12 +63,16 @@ const App = () => {
     <div className="relative  bg-white dark:bg-black transition-colors">
       <Toaster />
       <Navbar theme={theme} setTheme={setTheme} />
-      <Hero />
-      {/* <TrustedBy /> */}
-      <Services />
-      <OurWork />
-      <Teams />
-      <ContactUs />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/work" element={<WorkPage />} />
+        <Route path="/team" element={<TeamPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
+
       <Footer theme={theme} />
 
       {/* Custom Cursor Ring */}

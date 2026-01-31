@@ -1,171 +1,247 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import assets from "../assets/assets";
 
 const Footer = ({ theme }) => {
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      setIsSubscribed(true);
+      setTimeout(() => {
+        setEmail("");
+        setIsSubscribed(false);
+      }, 3000);
+    }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const footerLinks = {
+    company: [
+      { name: "Home", href: "/" },
+      { name: "About Us", href: "/about-us" },
+    ],
+    services: [
+      { name: "Services", href: "/services" },
+      { name: "Our Work", href: "/work" },
+    ],
+    connect: [
+      { name: "Team", href: "/team" },
+      { name: "Contact Us", href: "/contact" },
+    ],
+  };
+
+  const socialLinks = [
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/webcrestlabs",
+      icon: assets.instagram_icon,
+    },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/company/webcrest-labs",
+      icon: assets.linkedin_icon,
+    },
+  ];
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className="bg-slate-50 dark:bg-gray-900 pt-10 sm:pt-10 mt-20 sm:mt-40 px-4 sm:px-10 lg:px-24 xl:px-40"
-    >
-      {/* Footer Top */}
-      <div className="flex justify-between lg:items-center max-lg:flex-col gap-10">
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="space-y-5 text-sm text-gray-700 dark:text-gray-400"
-        >
-          {/* Brand Text Logo */}
-          <div className="leading-tight select-none group cursor-pointer">
-            <span
-              className="
-            block text-lg sm:text-xl font-extrabold
-            bg-gradient-to-r from-primary via-indigo-500 to-sky-500
-            dark:from-amber-400 dark:via-orange-400 dark:to-yellow-500
-            bg-clip-text text-transparent
-            transition-all duration-300
-            group-hover:tracking-widest
-            dark:font-mono
-          "
-            >
-              WebCrest
-            </span>
-            <span
-              className="
-            block text-xs sm:text-sm font-semibold uppercase
-            tracking-[0.25em]
-            text-gray-600 dark:text-gray-300
-            transition-all duration-300
-            group-hover:tracking-[0.4em]
-            dark:font-mono
-          "
-            >
-              Labs
-            </span>
-          </div>
-          <p className="max-w-md">
-            From strategy to execution, we craft digital solutions that move
-            your business forward.
-          </p>
+    <footer className="relative bg-gradient-to-b from-white to-slate-50 dark:from-gray-900 dark:to-gray-950 mt-20 sm:mt-32 overflow-hidden">
+      {/* Decorative gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-indigo-500/5 dark:from-primary/10 dark:to-indigo-500/10 pointer-events-none" />
 
-          <ul className="flex gap-8">
-            <li>
-              <a className="hover:text-primary" href="#hero">
-                Home
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-primary" href="#services">
-                Services
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-primary" href="#our-work">
-                Our work
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-primary" href="#contact-us">
-                Contact Us
-              </a>
-            </li>
-          </ul>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-gray-600 dark:text-gray-400"
-        >
-          <h3 className="font-semibold">Subscribe to our newsletter</h3>
-          <p className="text-sm mt-2 mb-6">
-            The latest news, articles, and resources, sent to your inbox weekly.
-          </p>
-
-          <div className="flex gap-2 text-sm">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full p-3 text-sm outline-none rounded dark:text-gray-200 bg-transparent border border-gray-300 dark:border-gray-500"
-            />
-            <button className="bg-primary text-white rounded px-6">
-              Susbcribe
-            </button>
-          </div>
-        </motion.div>
-      </div>
-      <hr className="border-gray-300 dark:border-gray-600 my-6" />
-
-      {/* footer bottom */}
+      {/* Main Footer Content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        viewport={{ once: true }}
-        className="pb-6 text-sm text-gray-500 flex justify-center sm:justify-between gap-4 flex-wrap">
-        <p>Copyright 2026 © WebCrest Labs - All Right Reserved.</p>
-        <p>
-          <a href="https://ghagsagar23.github.io/vue_js_udemy/">Developed By Sagar Ghag</a>
-        </p>
-        <div className="flex items-center justify-between gap-4">
-          {/* <img src={assets.facebook_icon} alt="" />
-          <img src={assets.twitter_icon} alt="" /> */}
-          <a
-            href="https://www.instagram.com/webcrestlabs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:scale-110 transition-transform"
-          >
-            <img src={assets.instagram_icon} alt="Instagram" />
-          </a>
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8"
+      >
+        {/* Top Section - Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12">
+          {/* Brand & Description - Takes more space */}
+          <motion.div variants={itemVariants} className="lg:col-span-5 space-y-6">
+            {/* Brand Logo */}
+            <div className="leading-tight select-none group cursor-pointer inline-block">
+              <span className="block text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-primary via-indigo-500 to-sky-500 dark:from-amber-400 dark:via-orange-400 dark:to-yellow-500 bg-clip-text text-transparent transition-all duration-500 group-hover:tracking-wider">
+                WebCrest
+              </span>
+              <span className="block text-sm sm:text-base font-semibold uppercase tracking-[0.3em] text-gray-600 dark:text-gray-300 transition-all duration-500 group-hover:tracking-[0.45em]">
+                Labs
+              </span>
+            </div>
 
-          <a
-            href="https://www.linkedin.com/company/webcrest-labs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:scale-110 transition-transform"
-          >
-            <img src={assets.linkedin_icon} alt="LinkedIn" />
-          </a>
+            {/* Description */}
+            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base leading-relaxed max-w-md">
+              From strategy to execution, we craft digital solutions that move your business forward.
+              Transforming ideas into exceptional digital experiences.
+            </p>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-4 pt-2">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gradient-to-br hover:from-primary hover:to-indigo-500 transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <img
+                    src={social.icon}
+                    alt={social.name}
+                    className="w-5 h-5 group-hover:brightness-0 group-hover:invert transition-all duration-300"
+                  />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Quick Links Columns */}
+          <motion.div variants={itemVariants} className="lg:col-span-2">
+            <h3 className="text-gray-900 dark:text-white font-bold text-sm uppercase tracking-wider mb-4 relative inline-block">
+              Company
+              <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-gradient-to-r from-primary to-indigo-500" />
+            </h3>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link, index) => (
+                <motion.li
+                  key={link.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 + index * 0.05 }}
+                  viewport={{ once: true }}
+                >
+                  <a
+                    href={link.href}
+                    className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm transition-all duration-300 hover:translate-x-1 inline-block group"
+                  >
+                    <span className="relative">
+                      {link.name}
+                      <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
+                    </span>
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="lg:col-span-2">
+            <h3 className="text-gray-900 dark:text-white font-bold text-sm uppercase tracking-wider mb-4 relative inline-block">
+              Services
+              <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-gradient-to-r from-primary to-indigo-500" />
+            </h3>
+            <ul className="space-y-3">
+              {footerLinks.services.map((link, index) => (
+                <motion.li
+                  key={link.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 + index * 0.05 }}
+                  viewport={{ once: true }}
+                >
+                  <a
+                    href={link.href}
+                    className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm transition-all duration-300 hover:translate-x-1 inline-block group"
+                  >
+                    <span className="relative">
+                      {link.name}
+                      <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
+                    </span>
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="lg:col-span-3">
+            <h3 className="text-gray-900 dark:text-white font-bold text-sm uppercase tracking-wider mb-4 relative inline-block">
+              Connect
+              <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-gradient-to-r from-primary to-indigo-500" />
+            </h3>
+            <ul className="space-y-3">
+              {footerLinks.connect.map((link, index) => (
+                <motion.li
+                  key={link.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 + index * 0.05 }}
+                  viewport={{ once: true }}
+                >
+                  <a
+                    href={link.href}
+                    className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm transition-all duration-300 hover:translate-x-1 inline-block group"
+                  >
+                    <span className="relative">
+                      {link.name}
+                      <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
+                    </span>
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
+
+        {/* Bottom Bar */}
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 text-sm text-gray-600 dark:text-gray-400"
+        >
+          <p className="text-center sm:text-left">
+            © 2026 <span className="font-semibold text-gray-900 dark:text-white">WebCrest Labs</span>. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-6">
+            <a
+              href="https://ghagsagar23.github.io/vue_js_udemy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors duration-300 group"
+            >
+              <span className="relative">
+                Crafted by Sagar Ghag
+                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
+              </span>
+            </a>
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
+
+      {/* Decorative bottom gradient line */}
+      <div className="h-1 bg-gradient-to-r from-primary via-indigo-500 to-sky-500 dark:from-amber-400 dark:via-orange-400 dark:to-yellow-500" />
+    </footer>
   );
 };
 
 export default Footer;
-
-{
-  /* <footer className="px-6 md:px-16 lg:px-24 xl:px-32 pt-8 w-full text-gray-500">
-            <div className="flex flex-col md:flex-row justify-between w-full gap-10 border-b border-gray-500/30 pb-6">
-                <div className="md:max-w-96">
-                    <img className="h-9" src={assets.logo} alt="dummyLogoDark" />
-                    <p className="mt-6 text-sm">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    </p>
-                </div>
-                <div className="flex-1 flex items-start md:justify-end gap-20">
-                    <div>
-                        <h2 className="font-semibold text-gray-800 mb-5">Subscribe to our newsletter</h2>
-                        <div className="text-sm space-y-2">
-                            <p>The latest news, articles, and resources, sent to your inbox weekly.</p>
-                            <div className="flex items-center gap-2 pt-4">
-                                <input className="border border-gray-500/30 placeholder-gray-500 focus:ring-2 ring-indigo-600 outline-none w-full max-w-64 h-9 rounded px-2" type="email" placeholder="Enter your email" />
-                                <button className="bg-blue-600 w-24 h-9 text-white rounded">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <p className="pt-4 text-center text-xs md:text-sm pb-5">
-                Copyright 2024 © <a href="https://prebuiltui.com">PrebuiltUI</a>. All Right Reserved.
-            </p>
-        </footer> */
-}

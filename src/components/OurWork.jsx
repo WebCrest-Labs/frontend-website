@@ -56,14 +56,18 @@ const OurWork = () => {
       viewport={{ once: true }}
       transition={{ staggerChildren: 0.2 }}
       id="our-work"
-      className="flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-700 dark:text-white"
+      className="relative flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-700 dark:text-white"
     >
-      <Title
-        title="Our latest work"
-        desc="Browse our portfolio of innovative digital projects that showcase creativity, performance, and results."
-      />
+      <img src={assets.bgImage1} alt="" className='absolute -top-110 -right-70 z-1 dark:hidden' />
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+      <div className="z-10">
+        <Title
+          title="Our latest work"
+          desc="Browse our portfolio of innovative digital projects that showcase creativity, performance, and results."
+        />
+      </div>
+
+      <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
         {workData.map((work, index) => (
           <motion.a
             href={work.link}

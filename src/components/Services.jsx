@@ -57,7 +57,7 @@ const Services = () => {
       <div className="z-10">
         <Title title='How can we help?' desc='From strategy to execution, we craft digital solutions that move your business forward.' />
       </div>
-      <div className="flex flex-col md:grid grid-cols-2">
+      <div className="relative z-10 flex flex-col md:grid grid-cols-2">
         {servicesData.map((service, index) => (
           <ServicesCard key={index} service={service} index={index} />
         ))}

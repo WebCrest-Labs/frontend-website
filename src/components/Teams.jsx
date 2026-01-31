@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { teamData } from '../assets/assets';
+import assets, { teamData } from '../assets/assets';
 import Title from './Title';
 
 const Teams = () => {
@@ -8,15 +8,19 @@ const Teams = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-800 dark:text-white"
+      className="relative flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-800 dark:text-white"
     >
-      <Title
-        title="Meet the Team"
-        desc="A focused group of builders, engineers, and strategists driving WebCrest Labs forward."
-      />
+      <img src={assets.bgImage2} alt="" className='absolute -top-110 -left-70 z-1 dark:hidden' />
+
+      <div className="z-10">
+        <Title
+          title="Meet the Team"
+          desc="A focused group of builders, engineers, and strategists driving WebCrest Labs forward."
+        />
+      </div>
 
       {/* Fully center-aligned grid and cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-8 justify-items-center w-full">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-8 justify-items-center w-full">
         {teamData.map((team, index) => (
           <motion.div
             key={index}

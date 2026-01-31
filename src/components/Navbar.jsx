@@ -1,20 +1,34 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import assets from '../assets/assets';
+import useScrollDirection from '../hooks/useScrollDirection';
 import ThemeToggleBtn from './ThemeToggleBtn';
 
 const Navbar = ({ theme, setTheme }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const scrollDirection = useScrollDirection();
+
+  const navLinkClass = ({ isActive }) => `
+    relative group cursor-pointer transition-all duration-300 ease-out 
+    ${isActive ? 'text-primary dark:text-amber-400' : 'hover:text-primary dark:hover:text-amber-400'}
+  `;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      initial={{ opacity: 0, y: -100 }}
+      animate={{
+        opacity: 1,
+        y: scrollDirection === 'down' ? -100 : 0
+      }}
+      transition={{
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94] // Custom cubic-bezier for smooth, professional feel
+      }}
       className="flex justify-between items-center px-4 sm:px-12 lg:px-24 xl:px-40 py-4 sticky top-0 z-20 backdrop-blur-xl font-medium bg-white/50 dark:bg-gray-900/70"
     >
       {/* Brand Text Logo */}
-      <div className="leading-tight select-none group cursor-pointer">
+      <Link to="/" className="leading-tight select-none group cursor-pointer">
         <span
           className="
             block text-lg sm:text-xl font-extrabold
@@ -40,7 +54,7 @@ const Navbar = ({ theme, setTheme }) => {
         >
           Labs
         </span>
-      </div>
+      </Link>
 
       {/* Sidebar / Menu Links */}
       <div
@@ -58,38 +72,54 @@ const Navbar = ({ theme, setTheme }) => {
           onClick={() => setSidebarOpen(false)}
         />
 
-        <a
+        <NavLink
+          to="/"
           onClick={() => setSidebarOpen(false)}
-          href="#"
-          className="relative group cursor-pointer transition-all duration-300 ease-out hover:text-primary dark:hover:text-amber-400"
+          className={navLinkClass}
         >
           <span className="relative z-10">Home</span>
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 dark:from-amber-400 dark:to-yellow-500 group-hover:w-full transition-all duration-300 ease-out"></span>
-        </a>
-        <a
+        </NavLink>
+        <NavLink
+          to="/about-us"
           onClick={() => setSidebarOpen(false)}
-          href="#services"
-          className="relative group cursor-pointer transition-all duration-300 ease-out hover:text-primary dark:hover:text-amber-400"
+          className={navLinkClass}
+        >
+          <span className="relative z-10">About Us</span>
+          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 dark:from-amber-400 dark:to-yellow-500 group-hover:w-full transition-all duration-300 ease-out"></span>
+        </NavLink>
+        <NavLink
+          to="/services"
+          onClick={() => setSidebarOpen(false)}
+          className={navLinkClass}
         >
           <span className="relative z-10">Services</span>
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 dark:from-amber-400 dark:to-yellow-500 group-hover:w-full transition-all duration-300 ease-out"></span>
-        </a>
-        <a
+        </NavLink>
+        <NavLink
+          to="/work"
           onClick={() => setSidebarOpen(false)}
-          href="#our-work"
-          className="relative group cursor-pointer transition-all duration-300 ease-out hover:text-primary dark:hover:text-amber-400"
+          className={navLinkClass}
         >
           <span className="relative z-10">Our Work</span>
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 dark:from-amber-400 dark:to-yellow-500 group-hover:w-full transition-all duration-300 ease-out"></span>
-        </a>
-        <a
+        </NavLink>
+        <NavLink
+          to="/team"
           onClick={() => setSidebarOpen(false)}
-          href="#contact-us"
-          className="relative group cursor-pointer transition-all duration-300 ease-out hover:text-primary dark:hover:text-amber-400"
+          className={navLinkClass}
+        >
+          <span className="relative z-10">Team</span>
+          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 dark:from-amber-400 dark:to-yellow-500 group-hover:w-full transition-all duration-300 ease-out"></span>
+        </NavLink>
+        <NavLink
+          to="/contact"
+          onClick={() => setSidebarOpen(false)}
+          className={navLinkClass}
         >
           <span className="relative z-10">Contact Us</span>
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 dark:from-amber-400 dark:to-yellow-500 group-hover:w-full transition-all duration-300 ease-out"></span>
-        </a>
+        </NavLink>
       </div>
 
       {/* Right Side Controls */}
@@ -103,8 +133,8 @@ const Navbar = ({ theme, setTheme }) => {
           className="w-8 sm:hidden cursor-pointer"
         />
 
-        <a
-          href="#contact-us"
+        <Link
+          to="/contact"
           className="text-sm hidden sm:flex items-center gap-2 bg-gradient-to-r from-primary to-indigo-600 dark:from-amber-500 dark:to-orange-500 text-white px-6 py-2 rounded-full cursor-pointer group relative overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-primary/50 dark:hover:shadow-amber-500/50"
         >
           <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-[-2px]">
@@ -117,7 +147,7 @@ const Navbar = ({ theme, setTheme }) => {
             className="relative z-10 transition-transform duration-300 group-hover:translate-x-1"
           />
           <span className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-primary dark:from-orange-500 dark:to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-        </a>
+        </Link>
       </div>
     </motion.div>
   );
