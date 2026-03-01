@@ -50,7 +50,7 @@ const Footer = ({ theme }) => {
       { name: "Our Work", href: "/work" },
     ],
     connect: [
-      { name: "Team", href: "/team" },
+      // { name: "Team", href: "/team" },
       { name: "Contact Us", href: "/contact" },
     ],
   };

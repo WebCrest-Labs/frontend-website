@@ -7,7 +7,7 @@ import AboutUs from './pages/AboutUs'
 import ContactPage from './pages/ContactPage'
 import Home from './pages/Home'
 import ServicesPage from './pages/ServicesPage'
-import TeamPage from './pages/TeamPage'
+// import TeamPage from './pages/TeamPage'
 import WorkPage from './pages/WorkPage'
 
 const getInitialTheme = () => {
@@ -69,7 +69,7 @@ const App = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/work" element={<WorkPage />} />
-        <Route path="/team" element={<TeamPage />} />
+        {/* <Route path="/team" element={<TeamPage />} /> */}
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
 
