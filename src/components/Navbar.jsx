@@ -104,14 +104,14 @@ const Navbar = ({ theme, setTheme }) => {
           <span className="relative z-10">Our Work</span>
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 dark:from-amber-400 dark:to-yellow-500 group-hover:w-full transition-all duration-300 ease-out"></span>
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/team"
           onClick={() => setSidebarOpen(false)}
           className={navLinkClass}
         >
           <span className="relative z-10">Team</span>
           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-indigo-500 dark:from-amber-400 dark:to-yellow-500 group-hover:w-full transition-all duration-300 ease-out"></span>
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/contact"
           onClick={() => setSidebarOpen(false)}
