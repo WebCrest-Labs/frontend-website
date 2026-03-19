@@ -1,8 +1,30 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import assets from '../assets/assets'
+import useSEO from '../hooks/useSEO'
 
 const AboutUs = () => {
+  useSEO({
+    title: 'About Us — Our Mission, Vision & Story',
+    description:
+      'Learn about WebCrest Labs — our mission to empower businesses with digital solutions, our core values of innovation and quality, and the story behind our growing team.',
+    keywords:
+      'about WebCrest Labs, digital agency team, our mission, our vision, core values, company story',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'About WebCrest Labs',
+      url: 'https://webcrestlabs.com/about-us',
+      description:
+        'WebCrest Labs is a team of passionate innovators dedicated to crafting exceptional digital experiences.',
+      publisher: {
+        '@type': 'Organization',
+        name: 'WebCrest Labs',
+        url: 'https://webcrestlabs.com',
+      },
+    },
+  })
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

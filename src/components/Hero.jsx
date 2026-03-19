@@ -61,12 +61,13 @@ const Hero = () => {
       >
         <img
           src={assets.hero_img}
-          alt=""
+          alt="WebCrest Labs — digital excellence showcase"
           className="w-full max-w-6xl relative z-10"
         />
         <img
           src={assets.bgImage1}
           alt=""
+          aria-hidden="true"
           className="absolute -top-40 -right-40 sm:-top-100 sm:-right-70 z-1 dark:hidden"
         />
       </motion.div>
